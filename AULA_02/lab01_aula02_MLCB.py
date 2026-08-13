@@ -1,7 +1,10 @@
+# ============================================================
+# LAB 01 - AULA 02 (MLCB): Classificador de Intenções
+# ============================================================
 import pandas as pd
 from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
-from sklearn.naive_bayes import MultinomialNB # Importa o Naive Bayes
 
 # 1. Dataset de Exemplo (Intenções Bancárias)
 dados = {
@@ -16,14 +19,10 @@ dados = {
         'Transferir dinheiro pelo pix agora'
     ],
     'intencao': [
-        'consultar_saldo',
-        'consultar_saldo',
-        'fazer_pix',
-        'fazer_pix',
-        'cancelar_conta',
-        'cancelar_conta',
-        'consultar_saldo',
-        'fazer_pix'
+        'consultar_saldo', 'consultar_saldo',
+        'fazer_pix', 'fazer_pix',
+        'cancelar_conta', 'cancelar_conta',
+        'consultar_saldo', 'fazer_pix'
     ]
 }
 
@@ -34,15 +33,15 @@ X = df1['mensagem']
 y = df1['intencao']
 
 # 3. Divisão do Dataset em Treino e Teste
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42)
 
 # 4. Vetorização de Texto (Bag of Words)
 vectorizer = CountVectorizer()
 X_train_vec = vectorizer.fit_transform(X_train)
 X_test_vec = vectorizer.transform(X_test)
 
-# 5. Treinamento do Modelo (Naive Bayes)
-modelo = MultinomialNB() # Substituindo LogisticRegression por MultinomialNB
+# 5. Treinamento do Modelo (Regressão Logística)
+modelo = LogisticRegression()
 modelo.fit(X_train_vec, y_train)
 
 # 6. Teste com Mensagens Inéditas
@@ -57,13 +56,15 @@ predicoes = modelo.predict(novas_frases_vec)
 
 print("--- RESULTADOS DO LAB 01 ---")
 for frase, intencao in zip(novas_frases, predicoes):
-    print(f"Mensagem: '{frase}' ==> Intenção: [{intencao}]")
-
+    print(f"Mensagem: '{frase}' ==> Intenção Predita: [{intencao}]")
   
-  ####### PRODUÇÃO DO RELATÓRIO:########
+
+#========== PRODUÇÃO DO RELATÓRIO:==============
 # Para a entrega completa deste LAB01 você precisa copiar a saída do código (output) e adicionar as repostas das perguntas abaixo:
 # 1 - Avaliem os resultados e verifiquem se os resultados foram corretos ou incorretos. Coloque a resposta no arquivo do relatório do laboratório
 # 2 - Detectado algum erro, qual seria a maneira mais correta de melhorar o resultado do algoritmo?
-# 3 - Detalhe a função do Naive Bayes no algorítmo.
+# 3 - Detalhe a função do LogisticRegression no algorítmo.
 
 # Todos os resultados devem ser inseridos no arquivo resultados_aula02.md
+
+#========== FIM ==============
