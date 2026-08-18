@@ -24,25 +24,25 @@ dados_tech = {
 df3 = pd.DataFrame(dados_tech)
 
 # TODO 1: Separe o dataset em X (coluna 'mensagem') e y (coluna 'intencao')
-X = None
-y = None
+X = df3['mensagem']
+y = df3['intencao']
 
 # TODO 2: Realize a divisão em treino (70%) e teste (30%) com random_state=42
-# X_train, X_test, y_train, y_test = ...
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.30, random_state=42)
 
 # TODO 3: Instancie o CountVectorizer e ajuste/transforme os dados de treino e teste
-# vectorizer = ...
-# X_train_vec = ...
-# X_test_vec = ...
+vectorizer = CountVectorizer()
+X_train_vec = vectorizer.fit_transform(X_train)
+X_test_vec = vectorizer.transform(X_test)
 
 # TODO 4: Instancie o DecisionTreeClassifier e treine o modelo com .fit()
-# modelo_arvore = ...
-# modelo_arvore.fit(...)
+modelo_arvore = DecisionTreeClassifier(random_state=42)
+modelo_arvore.fit(X_train_vec, y_train)
 
 # TODO 5: Gere as predições para o X_test_vec e exiba a acurácia
-# predicoes = modelo_arvore.predict(...)
-# acuracia = accuracy_score(...)
-# print(f"Acurácia do Modelo: {acuracia * 100:.2f}%")
+predicoes = modelo_arvore.predict(X_test_vec)
+acuracia = accuracy_score(y_test, predicoes)
+print(f"Acurácia do Modelo: {acuracia * 100:.2f}%")
 
 
 #========== PRODUÇÃO DO RELATÓRIO:==============
