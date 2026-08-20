@@ -170,3 +170,175 @@ for frase, intencao in zip(frases_ineditas, predicoes_ineditas):
 
 
 
+
+# ============================================================
+# LAB 01 - AULA 03 (MLCB): Pré-processamento e Stopwords
+# ============================================================
+import pandas as pd
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+
+# Dataset de Atendimento Financeiro
+dados = {
+    'mensagem': [
+        'Como posso emitir a segunda via do meu boleto?',
+        'Preciso da 2a via da minha fatura atrasada',
+        'Quero negociar o pagamento da minha dívida',
+        'Como fazer um acordo para pagar o débito em aberto?',
+        'Gostaria de alterar meu endereço de cadastramento',
+        'Onde atualizo os meus dados residenciais no app?'
+    ],
+    'intencao': [
+        'segunda_via', 'segunda_via',
+        'negociar_divida', 'negociar_divida',
+        'atualizar_cadastro', 'atualizar_cadastro'
+    ]
+}
+
+df1 = pd.DataFrame(dados)
+
+# Criando lista de Stopwords personalizadas em Português
+stopwords_pt = [
+    'de', 'da', 'do', 'dos', 'das', 'a', 'o', 'as', 'os', 'em', 'para',
+    'com', 'por', 'meu', 'minha', 'meus', 'minhas', 'como', 'quero', 'preciso'
+]
+
+# Vetorização TF-IDF aplicando stopwords e n-grams
+vectorizer = TfidfVectorizer(stop_words=stopwords_pt, ngram_range=(1, 2))
+X_vec = vectorizer.fit_transform(df1['mensagem'])
+y = df1['intencao']
+
+modelo = LogisticRegression()
+modelo.fit(X_vec, y)
+
+# Teste com nova mensagem
+frase_teste = ["Preciso urgente da segunda via da fatura"]
+frase_vec = vectorizer.transform(frase_teste)
+predicao = modelo.predict(frase_vec)[0]
+
+print("--- RESULTADOS DO LAB 01 (AULA 03) ---")
+print(f"Mensagem: '{frase_teste[0]}'")
+print(f"Intenção Predita: [{predicao}]")
+print(f"Vocabulário Filtrado (sem stopwords): {list(vectorizer.get_feature_names_out())}")
+
+#========== PRODUÇÃO DO RELATÓRIO:==============
+# 1 - Qual o impacto da remoção de stopwords no tamanho do vocabulário do modelo?
+# 2 - O que significa a configuração ngram_range=(1, 2) no TfidfVectorizer?
+# 3 - Como a remoção de palavras genéricas ajuda a evitar classificações incorretas?
+# Todos os resultados devem ser inseridos no arquivo resultados_aula03.md
+#========== FIM ==============
+
+
+
+# ============================================================
+# LAB 02 - AULA 03 (MLCB): Matriz de Confusão e Métricas
+# ============================================================
+import pandas as pd
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.naive_bayes import MultinomialNB
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import classification_report, confusion_matrix
+
+# Dataset ampliado para avaliação estatística
+dados = {
+    'mensagem': [
+        'Onde fica a loja fisica?', 'Qual o endereço da unidade SP?', 'Como chegar na loja?',
+        'Qual o horario de funcionamento?', 'A loja abre aos domingos?', 'Que horas voces fecham?',
+        'Quero trocar um produto com defeito', 'Como funciona a troca?', 'Preciso devolver meu pedido'
+    ],
+    'intencao': [
+        'localizacao', 'localizacao', 'localizacao',
+        'horario_atendimento', 'horario_atendimento', 'horario_atendimento',
+        'troca_devolucao', 'troca_devolucao', 'troca_devolucao'
+    ]
+}
+
+df2 = pd.DataFrame(dados)
+
+X_train, X_test, y_train, y_test = train_test_split(
+    df2['mensagem'], df2['intencao'], test_size=0.33, random_state=42
+)
+
+vectorizer = TfidfVectorizer()
+X_train_vec = vectorizer.fit_transform(X_train)
+X_test_vec = vectorizer.transform(X_test)
+
+modelo = MultinomialNB()
+modelo.fit(X_train_vec, y_train)
+
+y_pred = modelo.predict(X_test_vec)
+
+print("--- RESULTADOS DO LAB 02 (AULA 03) ---")
+print("\n--- Relatório de Classificação ---")
+print(classification_report(y_test, y_pred, zero_division=0))
+
+print("--- Matriz de Confusão ---")
+print(confusion_matrix(y_test, y_pred))
+
+#========== PRODUÇÃO DO RELATÓRIO:==============
+# 1 - O que representam as métricas Precision, Recall e F1-Score no relatório?
+# 2 - Como interpretar a diagonal principal da Matriz de Confusão?
+# 3 - Por que a acurácia isolada pode ser enganosa quando temos classes desbalanceadas?
+# Todos os resultados devem ser inseridos no arquivo resultados_aula03.md
+#========== FIM ==============
+
+
+
+
+# ============================================================
+# LAB 03 - AULA 03 (MLCB): Scikit-Learn Pipeline (Modo TODO)
+# ============================================================
+import pandas as pd
+from sklearn.pipeline import Pipeline
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+
+dados_rh = {
+    'mensagem': [
+        'Como solicitar minhas ferias?', 'Quero agendar meu periodo de ferias',
+        'Onde baixo meu holerite do mes?', 'Preciso do comprovante de rendimentos',
+        'Como cadastrar meu atestado medico?', 'Onde envio o atestado de consulta?'
+    ],
+    'intencao': [
+        'solicitar_ferias', 'solicitar_ferias',
+        'obter_holerite', 'obter_holerite',
+        'enviar_atestado', 'enviar_atestado'
+    ]
+}
+
+df3 = pd.DataFrame(dados_rh)
+
+# TODO 1: Separe o dataset em X ('mensagem') e y ('intencao')
+X = None
+y = None
+
+# TODO 2: Realize o train_test_split com test_size=0.33 e random_state=42
+# X_train, X_test, y_train, y_test = ...
+
+# TODO 3: Monte o Pipeline encapsulando o TfidfVectorizer e a LogisticRegression
+# pipeline = Pipeline([
+#     ('vectorizer', TfidfVectorizer(stop_words=['de', 'o', 'meu', 'minhas'])),
+#     ('classifier', LogisticRegression())
+# ])
+
+# TODO 4: Treine o pipeline completo com .fit() usando os dados de treino brutos
+# pipeline.fit(...)
+
+# TODO 5: Faca a predicao nos dados de teste brutos e exiba a acuracia
+# predicoes = pipeline.predict(...)
+# print(f"Acuracia via Pipeline: {accuracy_score(y_test, predicoes) * 100:.2f}%")
+
+#========== PRODUÇÃO DO RELATÓRIO:==============
+# 1 - Cole o código corrigido e a acurácia obtida.
+# 2 - Qual é a grande vantagem de utilizar o objeto Pipeline no Scikit-Learn?
+# 3 - Por que o Pipeline evita que erros de pré-processamento ocorram entre treino e teste?
+# Todos os resultados devem ser inseridos no arquivo resultados_aula03.md
+#========== FIM ==============
+
+
+
+
+
