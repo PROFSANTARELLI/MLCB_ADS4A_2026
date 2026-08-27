@@ -5,11 +5,24 @@ AULA 03 - AC-1 parte final - Valor: de 0 à 0,25
 Para iniciar é necessário obrigatoriamente que você tenha:
 - Finalizdo a construção das etapas AC-1 parte 1 e parte 2.
 - Ler atentamento os passos do roteiro abaixo.
+- Proibido resposta 100% com IA.
 
 
+Cenário: SAC Móveis Residenciais
 
-Cenário do Exercício: SAC Móveis ResidenciaisA empresa Casa & Conforto Móveis precisa implementar um motor NLU para automatizar a triagem no atendimento ao cliente. O chatbot deve classificar as requisições em 5 intenções estratégicas:vendassuportetrocas_devolucoesreclamacoeslogistica_entregasPasso 0: Gerador de Dataset Sintético (100 Frases / 5 Intenções)Executem o script abaixo para criar o arquivo dataset_moveis_100.csv (20 frases por intenção).Python# ==============================================================================
-# PASSO 0: GERADOR SINTÉTICO DE DADOS - SAC MÓVEIS RESIDENCIAIS (100 FRASES)
+A empresa Casa & Conforto Móveis precisa implementar um motor NLU para automatizar a triagem no atendimento ao cliente.
+O chatbot deve classificar as requisições em 5 intenções estratégicas:
+- vendas
+- suporte
+- trocas_devolucoes
+- reclamacoes
+- logistica_entregas
+
+Passo 1: Gerador de Dataset Sintético (100 Frases / 5 Intenções)
+- Executem o script abaixo para criar o arquivo dataset_moveis_100.csv (20 frases por intenção).
+
+# ==============================================================================
+# GERADOR SINTÉTICO DE DADOS - SAC MÓVEIS RESIDENCIAIS
 # ==============================================================================
 import pandas as pd
 import random
@@ -56,9 +69,17 @@ for intencao, comp in templates.items():
 df_moveis = pd.DataFrame(amostras)
 df_moveis.to_csv('dataset_moveis_100.csv', index=False, encoding='utf-8')
 
-print("✅ Dataset 'dataset_moveis_100.csv' criado com 100 frases distribuidas em 5 intencoes!")
-Atividade 1: Código Semi-Pronto (Versão 1 — KNN com Fallback e 10 Testes Digitados)Instruções: Complete os trechos marcados com # TODO para montar a pipeline usando KNN ($K=3$). O loop deve solicitar obrigatoriamente 10 entradas manuais via input(). Em caso de confiança abaixo do limiar ($50\%$), acione o Fallback direcionando o cliente para a equipe humana.Python# ==============================================================================
-# ATIVIDADE 1: CHATBOT VERSÃO 1 (KNN) - MODO TODO
+print(" Dataset 'dataset_moveis_100.csv' criado com 100 frases distribuidas em 5 intencoes!")
+
+
+Atividade 1: Código Semi-Pronto - (Versão 1 — KNN com Fallback e 10 Testes Digitados)
+Instruções:
+1 - Complete os trechos marcados com # TODO para montar a pipeline usando KNN ($K=3$).
+2 - O loop deve solicitar obrigatoriamente 10 entradas manuais via input().
+3 - Em caso de confiança abaixo do limiar (50%), acione o Fallback direcionando o cliente para a equipe humana.
+
+# ==============================================================================
+# ATIVIDADE 1: CHATBOT VERSÃO 1 (KNN)
 # ==============================================================================
 import numpy as np
 import pandas as pd
@@ -110,8 +131,23 @@ for i in range(1, 11):
     # Senao: imprima o Fallback encaminhando para atendimento humano.
     
     pass
-Atividade 2: Construção do Zero (Versão 2 — Decision Tree e 8 Testes Digitados)Instruções: Desenvolva um script do zero aplicando Árvores de Decisão (DecisionTreeClassifier) para o mesmo dataset (dataset_moveis_100.csv).Requisitos Obrigatórios:Carregar o CSV e aplicar divisão estratificada de treino/teste ($30\%$ teste).Construir e treinar a Pipeline utilizando TF-IDF + DecisionTreeClassifier(random_state=42).Calcular e imprimir no console:Matriz de Confusão (confusion_matrix)Relatório de Classificação (classification_report) contendo Precision, Recall e F1-Score.Criar uma estrutura interativa que solicite ao aluno a inserção de 8 frases via input().Implementar a lógica de Fallback ($Limiar = 50\%$): frases com probabilidade abaixo da margem devem exibir a mensagem:"Desculpe, não entendi sua solicitação. Encaminhando você para um atendente humano... 👤💬"Atividade 3: Relatório Comparativo de ModelosAo concluir a execução dos dois scripts, consolide as análises no arquivo resultados_aula05.md seguindo o modelo abaixo:Markdown# Relatório de Avaliação NLU - SAC Móveis Residenciais
 
+
+Atividade 2: Construção do Zero (Versão 2 — Decision Tree e 8 Testes Digitados)
+Instruções:
+1 - Desenvolva um script do zero aplicando Árvores de Decisão (DecisionTreeClassifier) para o mesmo dataset (dataset_moveis_100.csv).
+2 - Requisitos Obrigatórios:
+ - Carregar o CSV e aplicar divisão estratificada de treino/teste (30% teste).
+ - Construir e treinar a Pipeline utilizando TF-IDF + DecisionTreeClassifier(random_state=42).
+ - Calcular e imprimir no console:Matriz de Confusão (confusion_matrix)Relatório de Classificação (classification_report) contendo Precision, Recall e F1-Score.
+ - Criar uma estrutura interativa que solicite ao aluno a inserção de 8 frases via input().
+ - Implementar a lógica de Fallback (Limiar = 50%): frases com probabilidade abaixo da margem devem exibir a mensagem:"Desculpe, não entendi sua solicitação. Encaminhando você para um atendente humano..."
+
+
+Atividade 3: Relatório Comparativo de Modelos
+1 - Ao concluir a execução dos dois scripts, consolide as análises no arquivo resultados_aula05.md seguindo o modelo abaixo:
+
+# Relatório de Avaliação NLU - SAC Móveis Residenciais
 ## 1. Tabela Comparativa de Métricas (Dados de Teste)
 
 | Modelo | Acurácia Geral | F1-Score (Weighted) | Principais Erros na Matriz |
@@ -126,5 +162,6 @@ Atividade 2: Construção do Zero (Versão 2 — Decision Tree e 8 Testes Digita
 ## 3. Veredito Final
 - **Melhor modelo para este projeto:** [KNN ou Decision Tree]
 - **Justificativa técnica:** [Explique a escolha com base nas métricas estatísticas e no comportamento do fallback]
-Gabarito Técnico Docente (Atividades 1 e 2)
+
+
 
