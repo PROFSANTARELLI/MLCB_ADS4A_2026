@@ -7,6 +7,10 @@ Ação: Aplicar limpeza de texto (Regex + Lemmatization), vetorização densa (E
 BLOCO 1: Preparação do Ambiente e Carga do Dataset
 Importamos as ferramentas de processamento e definimos nosso dataset focado no atendimento imobiliário (vendas, aluguel, suporte e contratos).
 
+!pip install gensim
+!python -m spacy download pt_core_news_sm
+
+
 import re
 import numpy as np
 import pandas as pd
