@@ -1,4 +1,4 @@
-AULA 08: Construção do modelo de aprendizado supervisionado com todos os aprendizados da aula 1 à 5 (preparatório para prova)
+AULA 06: Construção do modelo de aprendizado supervisionado com todos os aprendizados da aula 1 à 5 (preparatório para prova)
 
 Objetivo: consolidar todo o pipeline de Natural Language Understanding (NLU) construído até aqui.
 
