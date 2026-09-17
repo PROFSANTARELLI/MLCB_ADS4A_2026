@@ -1,7 +1,14 @@
-AULA 06 - ATIVIDADE AC-2 PARTE FINAL - VALOR DE 0,25 PONTO
+AULA 07 - ATIVIDADE AC-2 PARTE FINAL - VALOR DE 0,25 PONTO
 
 - Todos as construções desta aula, códigos e respostas, devem ficar juntas em um único arquivo chamado resultado_aula07.txt, dentro do diretório AULA_07 no repositório da dupla/trio
 
+================================================================================
+          LABORATÓRIO PRÁTICO PREPARATÓRIO PARA PROVA INDIVIDUAL AAI
+================================================================================
+Instruções:
+1 - Complete o código Python nos blocos indicados por # TODO.
+2 - Responda às questões conceituais ao final de cada exercício (PROIBIDO RESPOSTA POR IA NAS QUESTÕES)
+3 - Nenhum exercício é necessário construção de código completo, só o trecho que está sendo pedido.
 
 
 
