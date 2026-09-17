@@ -1,12 +1,17 @@
+AULA 06 - ATIVIDADE AC-2 PARTE FINAL - VALOR DE 0,25 PONTO
+
+- Todos as construções desta aula, códigos e respostas, devem ficar juntas em um único arquivo chamado resultado_aula07.txt, dentro do diretório AULA_07 no repositório da dupla/trio
+
 ================================================================================
-          LABORATÓRIO PRÁTICO PREPARATÓRIO — PROVA A1 (NLP & NLU)
+          LABORATÓRIO PRÁTICO PREPARATÓRIO PARA PROVA INDIVIDUAL AAI
 ================================================================================
-Instruções: Complete o código Python nos blocos indicados por # TODO.
-Responda brevemente às perguntas conceituais ao final de cada exercício.
---------------------------------------------------------------------------------
+Instruções:
+1 - Complete o código Python nos blocos indicados por # TODO.
+2 - Responda às questões conceituais ao final de cada exercício (PROIBIDO RESPOSTA POR IA NAS QUESTÕES)
+3 - Nenhum exercício é necessário construção de código completo, só o trecho que está sendo pedido.
 
 --------------------------------------------------------------------------------
-EXERCÍCIO 01: Pré-processamento — Stopwords e Lematização Manual
+EXERCÍCIO 01: Pré-processamento — Stopwords e Lematização 
 --------------------------------------------------------------------------------
 Cenário: Um e-commerce precisa limpar uma lista de tokens para remover ruídos.
 
@@ -22,14 +27,9 @@ tokens_limpos = []
 # - Se a palavra for "chegaram", adicione "chegar" na lista limpa.
 # - Para as demais palavras, adicione-as sem alteração.
 
-
 # TODO: Imprima a lista tokens_limpos
 
-
-[PERGUNTA TEÓRICA]
-Qual a diferença entre Stemming e Lematização? Por que a Lematização garante
-que a palavra exista no dicionário e o Stemming não?
-Resposta:
+Responda: Qual a diferença entre Stemming e Lematização? Por que a Lematização garante que a palavra exista no dicionário e o Stemming não?
 
 
 --------------------------------------------------------------------------------
@@ -41,14 +41,9 @@ Cenário: Um banco precisa verificar se a confiança da intenção é suficiente
 # - Se a confiança for maior ou igual a 0.70, retorne "Ação Executada".
 # - Caso contrário, retorne "Fallback Acionado".
 
-
 # TODO: Teste a função chamando-a com o valor 0.55 e imprima o resultado
 
-
-[PERGUNTA TEÓRICA]
-O que aconteceria de errado no sistema de um banco se o limiar de confiança 
-(Threshold) fosse configurado em apenas 20% (0.20)?
-Resposta:
+Responda: O que aconteceria de errado no sistema de um banco se o limiar de confiança (Threshold) fosse configurado em apenas 20% (0.20)?
 
 
 --------------------------------------------------------------------------------
@@ -60,21 +55,15 @@ Cenário: Uma imobiliária classifica mensagens com base na raridade dos termos.
 # - Se frequencia_geral for "muito_frequente", retorne 0.1
 # - Se frequencia_geral for "pouco_frequente", retorne 0.9
 
-
 # TODO: Teste a função para a palavra "vazamento" ("pouco_frequente") e imprima o peso
 
-
-[PERGUNTA TEÓRICA]
-Qual a lógica conceitual do TF-IDF para atribuir peso baixo a palavras muito 
-comuns e peso alto a palavras raras num banco de dados?
-Resposta:
+Responda: Qual a lógica conceitual do TF-IDF para atribuir peso baixo a palavras muito comuns e peso alto a palavras raras num banco de dados?
 
 
 --------------------------------------------------------------------------------
 EXERCÍCIO 04: Métricas de Avaliação — Calculando a Precisão
 --------------------------------------------------------------------------------
 Cenário: Avaliação de um modelo de detecção de fraude em e-commerce.
-
 vp = 80  # Verdadeiros Positivos
 fp = 20  # Falsos Positivos
 fn = 5   # Falsos Negativos
@@ -84,11 +73,7 @@ precisao =
 
 # TODO: Imprima a precisão formatada em porcentagem (multiplicada por 100)
 
-
-[PERGUNTA TEÓRICA]
-Em detecção de fraudes, o que representa um Falso Positivo e um Falso Negativo?
-Qual dos dois gera prejuízo financeiro direto à empresa?
-Resposta:
+Responda: Em detecção de fraudes, o que representa um Falso Positivo e um Falso Negativo? Qual dos dois gera prejuízo financeiro direto à empresa?
 
 
 --------------------------------------------------------------------------------
@@ -101,14 +86,9 @@ Cenário: Extrair parâmetros da frase: "Quero comprar 2 caixas de analgésico".
 # - "produto": "analgésico"
 # - "quantidade": 2
 
-
 # TODO: Imprima o dicionário criado
 
-
-[PERGUNTA TEÓRICA]
-Na arquitetura de NLU, qual a diferença conceitual entre Intenção (Intent) 
-e Entidade (Slot)?
-Resposta:
+Responda: Na arquitetura de NLU, qual a diferença conceitual entre Intenção (Intent) e Entidade (Slot)?
 
 
 --------------------------------------------------------------------------------
@@ -120,44 +100,32 @@ Cenário: Um sistema calcula a distância semântica entre palavras.
 # - Se a distância for menor que 0.20, retorne True
 # - Caso contrário, retorne False
 
-
 # TODO: Teste a função passando a distância 0.05 ("aluguel" e "locação") e imprima o resultado
 
-
-[PERGUNTA TEÓRICA]
-Por que um modelo baseado puramente em TF-IDF não consegue entender sinônimos,
-enquanto o Word Embeddings consegue?
-Resposta:
+Responda: Por que um modelo baseado puramente em TF-IDF não consegue entender sinônimos, enquanto o Word Embeddings consegue?
 
 
 --------------------------------------------------------------------------------
 EXERCÍCIO 07: Limpeza de Texto — Tokenização, Pontuação e Stopwords
 --------------------------------------------------------------------------------
 Cenário: Higienização de mensagens em um sistema de chamados.
-
 bruta = ["O", "sistema", "está", "muito", "lento", "hoje", "!"]
 stopwords = ["O", "está"]
 
 # TODO: Crie uma lista vazia chamada tokens_limpos
 
-
 # TODO: Percorra a lista 'bruta' com um for e adicione à 'tokens_limpos' 
 # apenas as palavras que NÃO estejam em 'stopwords' e que sejam diferentes de "!"
 
-
 # TODO: Imprima a lista tokens_limpos
 
-
-[PERGUNTA TEÓRICA]
-O que são Stopwords e por que sua remoção é importante no pré-processamento?
-Resposta:
+Responda: O que são Stopwords e por que sua remoção é importante no pré-processamento?
 
 
 --------------------------------------------------------------------------------
-EXERCÍCIO 08: Métricas de Avaliação — Calculando o Recall (Sensibilidade)
+EXERCÍCIO 08: Métricas de Avaliação — Calculando o Recall
 --------------------------------------------------------------------------------
 Cenário: Triagem médica automatizada em um pronto-socorro.
-
 vp = 90  # Verdadeiros Positivos (casos graves detectados)
 fn = 10  # Falsos Negativos (casos graves ignorados)
 
@@ -166,41 +134,30 @@ recall =
 
 # TODO: Imprima o Recall formatado em porcentagem
 
-
-[PERGUNTA TEÓRICA]
-O Recall foca em evitar Falsos Positivos ou Falsos Negativos? Por que ter um 
+Responda: O Recall foca em evitar Falsos Positivos ou Falsos Negativos? Por que ter um 
 Recall alto é vital na área de saúde ou segurança?
-Resposta:
 
 
 --------------------------------------------------------------------------------
 EXERCÍCIO 09: Processamento Rápido — Simulando um Stemmer
 --------------------------------------------------------------------------------
 Cenário: Redução mecânica de palavras para economia de recursos.
-
 palavras = ["correndo", "corredor", "correu"]
 
 # TODO: Crie uma lista vazia chamada radicais
 
-
 # TODO: Percorra a lista 'palavras' e corte os sufixos de modo que todas 
 # fiquem reduzidas ao radical "corr". Adicione "corr" na lista 'radicais'.
 
-
 # TODO: Imprima a lista radicais
 
-
-[PERGUNTA TEÓRICA]
-O que caracteriza o Stemming em termos de processamento e por que ele é mais 
-rápido do que a Lematização?
-Resposta:
+Responda: O que caracteriza o Stemming em termos de processamento e por que ele é mais rápido do que a Lematização?
 
 
 --------------------------------------------------------------------------------
 EXERCÍCIO 10: Seleção de Intenção e Disparo de Fallback
 --------------------------------------------------------------------------------
 Cenário: O chatbot recebe a frase ambígua "Quero ver aquele negócio lá".
-
 probabilidades = [0.25, 0.30, 0.15]
 limiar = 0.60
 
@@ -211,10 +168,14 @@ maior_confianca =
 # - Se maior_confianca for maior ou igual ao limiar, imprima "Intenção Confirmada"
 # - Caso contrário, imprima "Acionar Fallback"
 
+Responda: Diante de uma intenção ambígua que aciona o Fallback, qual mensagem o chatbot deve exibir ao usuário e qual o objetivo dessa resposta?
 
-[PERGUNTA TEÓRICA]
-Diante de uma intenção ambígua que aciona o Fallback, qual mensagem o chatbot
-deve exibir ao usuário e qual o objetivo dessa resposta?
-Resposta:
 
-================================================================================
+
+
+
+
+
+
+
+
