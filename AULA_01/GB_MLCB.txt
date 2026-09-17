@@ -1,0 +1,190 @@
+EXERCÍCIO 01: Pré-processamento — Stopwords e Lematização Manual
+Código Resolvido (Python):
+
+Python
+tokens = ["os", "produtos", "comprados", "não", "chegaram"]
+stopwords = ["os", "não"]
+
+tokens_limpos = []
+
+for palavra in tokens:
+    if palavra in stopwords:
+        continue
+    elif palavra == "comprados":
+        tokens_limpos.append("comprar")
+    elif palavra == "chegaram":
+        tokens_limpos.append("chegar")
+    else:
+        tokens_limpos.append(palavra)
+
+print(tokens_limpos)
+# Saída esperada: ['produtos', 'comprar', 'chegar']
+Resposta Teórica:
+
+Stemming: Aplica um corte heurístico/bruto nos sufixos das palavras para extrair um radical. Não analisa o contexto sintático nem a classe gramatical, o que pode resultar em palavras inexistentes ou truncadas (ex: "assim" -> "ass").
+
+Lematização: Utiliza análise morfológica e vocabulários de dicionário para reduzir a palavra à sua forma canônica (lema ou forma de dicionário). 
+Por ser baseada em dicionários reais e regras gramaticais da língua, garante que a palavra gerada seja um vocábulo válido.
+
+EXERCÍCIO 02: Validação de NLU — Threshold e Fallback
+Código Resolvido (Python):
+
+Python
+def validar_intencao(confianca):
+    if confianca >= 0.70:
+        return "Ação Executada"
+    else:
+        return "Fallback Acionado"
+
+resultado = validar_intencao(0.55)
+print(resultado)
+# Saída esperada: Fallback Acionado
+Resposta Teórica:
+Se o limiar (Threshold) fosse configurado em apenas 20% (0.20), o chatbot passaria a aceitar intenções com um grau altíssimo de incerteza e ambiguidade. 
+Em um cenário bancário, isso levaria a execuções indevidas de transações finaceiras (ex: realizar um Pix ou transferência) sem ter certeza absoluta do desejo do cliente, causando sérios prejuízos financeiros e falhas de segurança.
+
+EXERCÍCIO 03: Ponderação de Palavras — Lógica TF-IDF
+Código Resolvido (Python):
+
+Python
+def calcular_peso_tfidf(frequencia_geral):
+    if frequencia_geral == "muito_frequente":
+        return 0.1
+    elif frequencia_geral == "pouco_frequente":
+        return 0.9
+
+peso = calcular_peso_tfidf("pouco_frequente")
+print(f"Peso da palavra: {peso}")
+# Saída esperada: Peso da palavra: 0.9
+Resposta Teórica:
+O TF-IDF parte do princípio de que palavras que aparecem em quase todos os documentos da base (alta frequência inversa no documento - IDF baixo) têm baixo poder discriminativo, funcionando quase como ruído (ex: "apartamento" em uma imobiliária). 
+Em contrapartida, palavras raras na base de dados (IDF alto) carregam a especificidade e o real contexto da mensagem (ex: "vazamento"), recebendo pesos maiores para destacar a urgência ou o tema do documento.
+
+EXERCÍCIO 04: Métricas de Avaliação — Calculando a Precisão
+Código Resolvido (Python):
+
+Python
+vp = 80  # Verdadeiros Positivos
+fp = 20  # Falsos Positivos
+fn = 5   # Falsos Negativos
+
+precisao = vp / (vp + fp)
+
+print(f"Precisão do modelo: {precisao * 100:.2f}%")
+# Saída esperada: Precisão do modelo: 80.00%
+Resposta Teórica:
+
+Falso Positivo (FP): O sistema classifica uma transação legítima como sendo fraude (bloqueio indevido de um cliente honesto).
+
+Falso Negativo (FN): O sistema deixa passar uma transação fraudulenta sem bloqueá-la (aprova o golpe).
+
+Prejuízo direto: O Falso Negativo gera prejuízo financeiro direto à empresa/banco, pois a fraude é consumada e o valor é perdido. (O Falso Positivo gera atrito/insatisfação do cliente, mas não o roubo direto).
+
+EXERCÍCIO 05: Estruturação de NLU — Dicionário de Intenção e Entidades
+Código Resolvido (Python):
+
+Python
+solicitacao = {
+    "intencao": "comprar_medicamento",
+    "produto": "analgésico",
+    "quantidade": 2
+}
+
+print(solicitacao)
+# Saída esperada: {'intencao': 'comprar_medicamento', 'produto': 'analgésico', 'quantidade': 2}
+Resposta Teórica:
+
+Intenção (Intent): Representa o objetivo principal ou o desejo do usuário ao enviar a mensagem (o que ele quer fazer, ex: comprar_medicamento, consultar_saldo).
+
+Entidade (Slot/Parameter): São os detalhes, parâmetros ou variáveis específicas contidas na frase que complementam a intenção (os dados necessários para executar a ação, ex: produto: analgésico, quantidade: 2).
+
+EXERCÍCIO 06: Representação Vetorial — Proximidade em Word Embeddings
+Código Resolvido (Python):
+
+Python
+def sao_sinonimos(distancia):
+    if distancia < 0.20:
+        return True
+    else:
+        return False
+
+resultado = sao_sinonimos(0.05)
+print(f"São sinônimos? {resultado}")
+# Saída esperada: São sinônimos? True
+Resposta Teórica:
+
+O TF-IDF trata as palavras como símbolos ortográficos isolados (Bag-of-Words). Para ele, "aluguel" e "locação" são duas cadeias de caracteres totalmente distintas e sem nenhuma relação.
+
+O Word Embeddings mapeia palavras em vetores numéricos multidimensionais com base no contexto em que costumam aparecer.
+Palavras que compartilham contextos semelhantes são posicionadas próximas no espaço vetorial, permitindo que o modelo meça a proximidade semântica e identifique sinônimos.
+
+EXERCÍCIO 07: Limpeza de Texto — Tokenização, Pontuação e Stopwords
+Código Resolvido (Python):
+
+Python
+bruta = ["O", "sistema", "está", "muito", "lento", "hoje", "!"]
+stopwords = ["O", "está"]
+
+tokens_limpos = []
+
+for item in bruta:
+    if item not in stopwords and item != "!":
+        tokens_limpos.append(item)
+
+print(tokens_limpos)
+# Saída esperada: ['sistema', 'muito', 'lento', 'hoje']
+Resposta Teórica:
+Stopwords são palavras funcionais de alta frequência em um idioma (artigos, preposições, pronomes) que cumprem papel gramatical, mas carregam pouco valor semântico para a tarefa de classificação. 
+Sua remoção reduz a dimensão dos dados, economiza processamento e evita que o modelo aprenda padrões baseados em ruídos gramaticais.
+
+EXERCÍCIO 08: Métricas de Avaliação — Calculando o Recall (Sensibilidade)
+Código Resolvido (Python):
+
+Python
+vp = 90  # Verdadeiros Positivos
+fn = 10  # Falsos Negativos
+
+recall = vp / (vp + fn)
+
+print(f"Recall do modelo: {recall * 100:.2f}%")
+# Saída esperada: Recall do modelo: 90.00%
+Resposta Teórica:
+
+O Recall avalia a capacidade do modelo em capturar a totalidade dos casos positivos reais, com o foco direto em minimizar os Falsos Negativos.
+
+Um Recall alto é fundamental em áreas críticas como saúde ou fraudes porque o custo da omissão é catastrófico. 
+É preferível ter um Falso Positivo (fazer um exame adicional em um paciente saudável) do que um Falso Negativo (dar alta a alguém com uma condição grave sem tratamento).
+
+EXERCÍCIO 09: Processamento Rápido — Simulando um Stemmer
+Código Resolvido (Python):
+
+Python
+palavras = ["correndo", "corredor", "correu"]
+radicais = []
+
+for palavra in palavras:
+    radicais.append(palavra[:4])  # Trunca os 4 primeiros caracteres ("corr")
+
+print(radicais)
+# Saída esperada: ['corr', 'corr', 'corr']
+Resposta Teórica:
+O Stemming é caracterizado por aplicar cortes brutos baseados em regras heurísticas estruturais/regex, ignorando classes gramaticais ou consultas a tabelas externas. 
+Por não exigir análise morfológica do contexto nem buscas em banco de dados ou dicionários estruturados, sua execução computacional é extremamente mais rápida e leve do que a Lematização.
+
+EXERCÍCIO 10: Seleção de Intenção e Disparo de Fallback
+Código Resolvido (Python):
+
+Python
+probabilidades = [0.25, 0.30, 0.15]
+limiar = 0.60
+
+maior_confianca = max(probabilidades)
+
+if maior_confianca >= limiar:
+    print("Intenção Confirmada")
+else:
+    print("Acionar Fallback")
+
+# Saída esperada: Acionar Fallback
+Resposta Teórica:
+Diante da incerteza, o mecanismo de Fallback deve responder de forma cortês e orientativa, por exemplo: "Desculpe, não consegui entender o que você precisa. Você poderia reescrever de outra forma ou escolher uma das opções abaixo?".
