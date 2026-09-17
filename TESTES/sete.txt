@@ -1,10 +1,4 @@
-================================================================================
-          LABORATÓRIO PRÁTICO PREPARATÓRIO PARA PROVA INDIVIDUAL AAI
-================================================================================
-Instruções:
-1 - Complete o código Python nos blocos indicados por # TODO.
-2 - Responda às questões conceituais ao final de cada exercício (PROIBIDO RESPOSTA POR IA NAS QUESTÕES)
-3 - Nenhum exercício é necessário construção de código completo, só o trecho que está sendo pedido.
+
 
 --------------------------------------------------------------------------------
 EXERCÍCIO 01: Pré-processamento — Stopwords e Lematização 
