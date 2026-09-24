@@ -1,4 +1,6 @@
-O assistente virtual de um banco recebe milhares de mensagens diárias no chat de atendimento, como "Quero enviar 50 reais pro meu irmão" ou "Perdi meu cartão, bloqueia aí". As mensagens chegam como texto bruto e não estruturado
+O assistente virtual de um banco recebe milhares de mensagens diárias no chat de atendimento,
+como "Quero enviar 50 reais pro meu irmão" ou "Perdi meu cartão, bloqueia aí". 
+As mensagens chegam como texto bruto e não estruturado
 
 Missão: Construir o Pipeline Completo de NLU.
 
