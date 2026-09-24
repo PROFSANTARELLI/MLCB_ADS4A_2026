@@ -1,1 +1,76 @@
+O assistente virtual de um banco recebe milhares de mensagens diárias no chat de atendimento, como "Quero enviar 50 reais pro meu irmão" ou "Perdi meu cartão, bloqueia aí". As mensagens chegam como texto bruto e não estruturado
 
+Missão: Construir o Pipeline Completo de NLU.
+
+
+
+import pandas as pd
+import re
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.linear_model import LogisticRegression
+
+# 1. DATASET
+dados = [
+    ("quero fazer um pix de 50 reais para joao", "pix"),
+    ("manda 100 reais via pix pra maria", "pix"),
+    ("manda 80 reais pelo pix", "pix"),
+    ("enviar dinheiro no pix", "pix"),
+    ("qual e o meu saldo da conta", "saldo"),
+    ("me mostra o saldo por favor", "saldo"),
+    ("ver meu saldo", "saldo"),
+    ("quero ver saldo", "saldo"),
+    ("perdi meu cartao bloqueia por favor", "bloquear_cartao"),
+    ("Cartão foi roubado quero bloquear", "bloquear_cartao")
+]
+
+
+# 2. PRÉ-PROCESSAMENTO
+def limpar(texto):
+    return re.sub(r'[^\w\s]', '', texto.lower()).strip() #Remove tudo o que NÃO for letra, número ou espaço. Remove espaço em branco no início e no fim da frase.
+
+X_textos = [limpar(d[0]) for d in dados] #Cria a lista de recursos de entrada do modelo usando List Comprehension
+y_labels = [d[1] for d in dados] #Cria a lista de alvos/rótulos usando List Comprehension
+
+
+# 3. VETORIZAÇÃO TF-IDF
+vectorizer = TfidfVectorizer() #Instancia (cria uma cópia) dessa classe
+X_vetorizado = vectorizer.fit_transform(X_textos)
+#.fit() (Aprender): Mapeia todas as palavras únicas, monta o vocabulário oficial e calcula os pesos estatísticos (IDF) de cada termo.
+#.transform() (Converter): Transforma cada frase da lista X_textos em uma linha de vetores numéricos com os pesos calculados.
+
+
+# 4. TREINAMENTO
+modelo = LogisticRegression() #algoritmo de classificação. Cria objeto do algoritmo
+modelo.fit(X_vetorizado, y_labels) #Realiza o treinamento supervisionado
+
+
+# 5. EXTRAÇÃO DE ENTIDADES (Regex)
+def extrair_valor(texto): #Cria função responsável por encontrar e isolar valores monetários dentro da mensagem informada pelo usuário.
+    match = re.search(r'(\d+)\s*reais', texto, re.IGNORECASE) #apenas números
+    return float(match.group(1)) if match else None #Retorna o dado estruturado
+
+
+# 6. PIPELINE DE NLU
+def processar_nlu(mensagem, threshold=0.5):
+    texto_limpo = limpar(mensagem) #Aplica a função de pré-processamento criada anteriormente sobre a mensagem nova.
+    vetor_input = vectorizer.transform([texto_limpo]) #Converte a frase nova limpa no seu vetor numérico equivalente.
+
+    probas = modelo.predict_proba(vetor_input)[0] #Solicita ao modelo treinado as probabilidades percentuais
+    maior_confianca = max(probas) #número é o que será comparado contra o Threshold
+    intencao = modelo.classes_[probas.argmax()] #Descobre o nome textual da intenção que venceu a disputa.
+
+    # Validação do Threshold de Confiança
+    if maior_confianca < threshold:
+        return {"intencao": "desconhecida", "confianca": round(float(maior_confianca), 2), "status": "FALLBACK"}
+
+    return {
+        "intencao": intencao,
+        "confianca": round(float(maior_confianca), 2),
+        "valor": extrair_valor(mensagem),
+        "status": "SUCESSO"
+    }
+
+# --- IMPRIMIR TESTES ---
+print(processar_nlu("Manda 80 reais pelo pix"))   # -> SUCESSO (pix)
+print(processar_nlu("Ver meu saldo"))             # -> SUCESSO (saldo)
+print(processar_nlu("Qual a previsão do tempo?")) # -> FALLBACK (fora_do_escopo)
