@@ -1,11 +1,27 @@
-Aprendizado não supervisionado é um tipo de machine learning em que o algoritmo recebe apenas dados sem rótulos (sem respostas corretas pré-definidas)
+ROTEIRO AULA 08 - 06/10/2026
+
+Bloco 1	- Teoria: Aprendizado Não Supervisionado
+
+Bloco 2	- Apresentação e Kickoff do PROJETO MESAFARTAI - Logística e Inteligência Assistiva no Combate à Fome
+https://docs.google.com/presentation/d/1VvsyQ1FUro08zhjESKDGacFHHoyJL2mnDdOuJu56tWw/edit?usp=sharing
+
+Bloco 3 - PASSO A PASSO - ETAPA DE INICIALIZAÇÃO DO PROJETO MESAFARTAI
+- Formar grupos de 3 a 5 alunos (pode ser o mesmo do projeto tech)
+- Baixar no repositório da disciplina o arquivo oficial: guia_projeto_mesafartai_aula08102026.doc
+- Ler e seguir rigorosamente todas as instruções contidas no documento para completar a etapa da aula de hoje.
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" APRENDIZADO NÃO SUPERVISIONADO
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+Aprendizado não supervisionado é um tipo de Machine Learning em que o algoritmo recebe apenas dados sem rótulos (sem respostas corretas pré-definidas)
 e precisa descobrir sozinho padrões, estruturas ou agrupamentos nesses dados.
 
 Diferença:
-- Supervisionado: você mostra exemplos com a resposta certa (ex.: foto de gato + rótulo “gato”).
+- Supervisionado: você mostra exemplos com a resposta certa e categorizada (ex: frase: Quero fazer um pix - categoria/intenção: pix).
 - Não supervisionado: você só entrega os dados crus. O algoritmo tem que encontrar sozinho o que faz sentido.
 
-O que ele costuma fazer:
+O que faz:
 1 - Agrupar dados parecidos (clustering) - Exemplo: separar clientes em grupos com comportamentos semelhantes sem você dizer quais são esses grupos.
 
 2 - Reduzir a complexidade dos dados (redução de dimensionalidade) - Exemplo: resumir milhares de características em poucas, mantendo o essencial.
@@ -20,19 +36,33 @@ Exemplos do dia a dia:
 - Compressão de imagens
 - Identificação de fraudes ou comportamentos estranhos
 
-O aprendizado não supervisionado deixa o computador explorar os dados por conta própria para revelar estruturas ocultas, sem precisar de um rótulo pré-definido dizendo o que é certo ou errado.
+O aprendizado não supervisionado deixa o computador explorar os dados por conta própria para revelar estruturas ocultas, sem precisar de um rótulo pré-definido..
 
-Exemplos em código:
+
+Exemplo em código:
 
 Exemplo 1: Agrupando clientes
-
 Objetivo: mostrar o funcionamento básico do K-Means.
 
 Temos clientes com duas características:
 - idade
 - renda
+Resultado: Queremos descobrir se existem grupos de clientes com características semelhantes.
 
-Queremos descobrir se existem grupos de clientes com características semelhantes.
+
+Exemplo 2: Descobrindo perfis de alunos por horas de estudo
+Objetivo: Mostrar categorias por horas de estudo
+Vamos utilizar:
+- horas de estudo por semana
+- nota média
+Resultado: Queremos descobrir se existem grupos de alunos com melhores notas por ter estudado mais ou menos.
+
+
+
+
+
+
+
 
 # pip install scikit-learn matplotlib
 
@@ -73,20 +103,17 @@ plt.scatter(
 
 plt.xlabel("Idade")
 plt.ylabel("Renda (milhares)")
-plt.title("Agrupamento de Clientes com K-Means")
-
+plt.title("Agrupamento de Clientes usando o K-Means")
 plt.show()
 
 
-Exemplo 2: Descobrindo perfis de alunos
 
-Vamos utilizar:
-- horas de estudo por semana
-- nota média
+
+
+
+
 # pip install scikit-learn
-
 from sklearn.cluster import KMeans
-
 
 # [horas de estudo, nota média]
 alunos = [
