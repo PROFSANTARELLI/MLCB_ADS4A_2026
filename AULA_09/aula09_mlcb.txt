@@ -1,4 +1,4 @@
-ROTEIRO AULA 08 - 06/10/2026
+ROTEIRO AULA 08 - 08/10/2026
 
 Bloco 1	- Teoria: Aprendizado Não Supervisionado
 
