@@ -5,17 +5,20 @@ ROTEIRO AULA 11
 
 PARTE 1 - CONTEXTO TEÓRICO E DEMO
 1. Por que usar Regex para Entidades e KNN para Matchmaking?
-No fluxo de um assistente virtual inteligente, a IA supervisionada (Random Forest) descobre a intenção da frase, mas não consegue estruturar os detalhes da doação para salvar no banco de dados,
-nem decidir sozinho para qual instituição aquela comida deve ir.
+No fluxo de um assistente virtual inteligente, a IA supervisionada (Random Forest) descobre a intenção da frase,
+mas não consegue estruturar os detalhes da doação para salvar no banco de dados, nem decidir sozinho para qual
+instituição aquela comida deve ir.
 
 O Regex e o KNN:
 Regex (Expressões Regulares) → Estruturação de Dados do Chat:
 - O Problema: O usuário escreve em texto livre e informal: "Quero doar 15 kg de arroz que vencem amanhã".
 O banco de dados SQL não entende esse texto solto; ele precisa de colunas numéricas e datas limpas (quantidade_kg: 15.0, validade: 2026-10-28).
-- A Solução: O Regex atua como um "extrator/aspirador de padrões" no texto. Ele varre a frase e raspa exatamente os números seguidos de unidades (kg, caixas) e os termos temporais (hoje, amanhã).
+- A Solução: O Regex atua como um "extrator/aspirador de padrões" no texto. Ele varre a frase e raspa exatamente os números seguidos de
+unidades(kg, caixas) e os termos temporais (hoje, amanhã).
 	
 KNN (K-Nearest Neighbors) → Decisão Logística Sem Rótulos:
-- O Problema: Como decidir para qual ONG enviar a comida? Não temos uma regra fixa nem um modelo treinado com respostas prontas, pois novas ONGs e doadores se cadastram a todo momento em localizações diferentes.
+- O Problema: Como decidir para qual ONG enviar a comida? Não temos uma regra fixa nem um modelo treinado com respostas prontas, pois novas ONGs e doadores 
+se cadastram a todo momento em localizações diferentes.
 - A Solução: O KNN calcula a menor distância espacial/vetorial no mapa 2D entre a latitude/longitude do doador e todas as ONGs ativas cadastradas no SQLite.
 A ONG com a menor distância em km é a escolhida automaticamente para receber o match.
 
