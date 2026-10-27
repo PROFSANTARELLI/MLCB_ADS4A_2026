@@ -39,6 +39,7 @@ mensagem_chat = "Olá! Tenho 25 kg de tomate para doar hoje perto do centro."
 
 # Padrão Regex para capturar números seguidos de 'kg' ou 'quilos'
 padrao_massa = r'(\d+(?:[\.,]\d+)?)\s*(?:kg|quilos)'
+# padrão r'(\d+(?:[\.,]\d+)?)\s*(?:kg|quilos)' busca por números inteiros ou decimais (aceitando tanto ponto quanto vírgula, ex: 2,5 ou 2.5) seguidos opcionalmente por espaços e pelas palavras kg ou quilos.
 
 match = re.search(padrao_massa, mensagem_chat, re.IGNORECASE)
 quantidade_extraida = float(match.group(1)) if match else 1.0
