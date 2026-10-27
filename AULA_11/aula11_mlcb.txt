@@ -2,23 +2,27 @@ ROTEIRO AULA 11
 
 1 - Contexto Teórico Demo do professor
 2 - 3ª e última fase da AC-3 (Valor 0,5 ponto)
+ - Construir o desafio para destravar a atividade de hoje
+ - Compreender e construir a etapa 3 da AC-3
 
-PARTE 1 - CONTEXTO TEÓRICO E DEMO
+PARTE 1 - CONTEXTO TEÓRICO
 1. Por que usar Regex para Entidades e KNN para Matchmaking?
-No fluxo de um assistente virtual inteligente, a IA supervisionada (Random Forest) descobre a intenção da frase,
-mas não consegue estruturar os detalhes da doação para salvar no banco de dados, nem decidir sozinho para qual
-instituição aquela comida deve ir.
+No fluxo de um assistente virtual inteligente, a IA descobre a intenção da frase, mas não consegue estruturar os detalhes da doação para salvar no banco de dados,
+nem decidir sozinho para qual instituição aquela comida deve ir.
 
-O Regex e o KNN:
+O REGEX e o KNN:
 Regex (Expressões Regulares) → Estruturação de Dados do Chat:
-- O Problema: O usuário escreve em texto livre e informal: "Quero doar 15 kg de arroz que vencem amanhã".
+- O Problema: O usuário escreve em texto livre: "Quero doar 15 kg de arroz que vencem amanhã".
 O banco de dados SQL não entende esse texto solto; ele precisa de colunas numéricas e datas limpas (quantidade_kg: 15.0, validade: 2026-10-28).
+
 - A Solução: O Regex atua como um "extrator/aspirador de padrões" no texto. Ele varre a frase e raspa exatamente os números seguidos de
 unidades(kg, caixas) e os termos temporais (hoje, amanhã).
-	
-KNN (K-Nearest Neighbors) → Decisão Logística Sem Rótulos:
+
+
+KNN (K-Nearest Neighbors):
 - O Problema: Como decidir para qual ONG enviar a comida? Não temos uma regra fixa nem um modelo treinado com respostas prontas, pois novas ONGs e doadores 
 se cadastram a todo momento em localizações diferentes.
+
 - A Solução: O KNN calcula a menor distância espacial/vetorial no mapa 2D entre a latitude/longitude do doador e todas as ONGs ativas cadastradas no SQLite.
 A ONG com a menor distância em km é a escolhida automaticamente para receber o match.
 
@@ -68,7 +72,7 @@ idx_ong = indices[0][0]
 ong_recomendada = ongs_banco[idx_ong]
 distancia_km = distancias[0][0] * 111  # Conversão aproximada para KM
 
-print(f"-> [KNN] Match Logístico Realizado!")
+print(f"-> Match Logístico Realizado!")
 print(f"   ONG Recomendada: {ong_recomendada[1]} (ID: {ong_recomendada[0]})")
 print(f"   Distância Calculada: {distancia_km:.2f} km do doador.")
 
@@ -78,27 +82,29 @@ Objetivo:
 - Testar se os alunos sabem criar padrões de Expressões Regulares.
 - Preparação para a prova semestral
 
-Desafio para destravar a atividade AC3-FINAL de hoje
-Imagine que um doador enviou uma mensagem bagunçada e informal. O grupo precisa criar um pequeno script no Colab que limpe o texto e extraia três informações obrigatórias SEM USO DE IA:
 
-1. A quantidade e a unidade (ex: 50 kg, 10 caixas).
-2. O tipo de alimento.
-3. Se o alimento é perecível (validade em dias) ou não perecível (validade em meses).
+Desafio para destravar a atividade AC3-FINAL de hoje
+Imagine que um doador enviou uma mensagem bagunçada e informal. O grupo precisa criar um script que limpe o texto e extraia as informações obrigatórias SEM USO DE IA:
+
+1. O tipo de alimento.
+2. A quantidade e a unidade.
+3. Se o alimento é perecível (validade em dias).
 
 O que se deve programar no Colab:
 import re
-# Mensagem de teste que o aluno deve processar:
-mensagem = "Atenção: estamos doando 35 kg de leite fresco que vence em 2 dias!"
+# Mensagem de teste que deve ser processada:
+mensagem = "Atenção: estamos doando 35 lt de leite fresco que vence em 2 dias!"
 
 # O ALUNO DEVE PREENCHER OS PADRÕES REGEX ABAIXO:
-padrao_qtd = r'...'  # Deve capturar 35 kg
+padrao_qtd = r'...'  # Deve capturar 35 lt
 padrao_dias = r'...' # Deve capturar 2 dias
 
 # Saída esperada no print:
-# Alimento: Leite | Quantidade: 35.0 kg | Urgência: ALTA (Vence em 2 dias)
+# Alimento: Leite | Quantidade: 35.0 lt | Urgência: ALTA (Vence em 2 dias)
 
-Regra de Liberação: Rodar no Colab, tira um print da tela com o código funcionando e envia no e-mail flavio.santarelli@pro.fecaf.com.br, com o assunto `[DESAFIO REGEX – ADS 4º]`. Apenas um email por grupo
+Regra de Liberação:
+- Rodar no Colab ou VSCODE, tirar um print da tela com o código funcionando e enviar no e-mail flavio.santarelli@pro.fecaf.com.br, com o assunto `[DESAFIO REGEX]`.
+- Apenas um email por grupo
+- O professor valida a resposta e devolve com a construção da etapa 3 do projeto MESAFARTAI
 
-O professor valida a resposta e devolve com a construção da etapa 3 do projeto MESAFARTAI
-
-PROIBIDO JOGAR NA IA
+PROIBIDO PEDIR PARA A IA
