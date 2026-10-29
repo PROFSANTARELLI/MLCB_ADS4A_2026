@@ -35,9 +35,10 @@ st.title(" Aprendendo Streamlit")
 # Inicialização da Memória da Sessão
 import streamlit as st
 
-# 1. VERIFICAÇÃO E INICIALIZAÇÃO DA MEMÓRIA DE SESSÃO (SESSION STATE) - O Streamlit recarrega o script do zero a cada clique. Se não salvarmos a variável
+# 1. VERIFICAÇÃO E INICIALIZAÇÃO DA MEMÓRIA DE SESSÃO (SESSION STATE) - O Streamlit recarrega o script do zero a cada clique.
 # no 'st.session_state', ela seria resetada para 0 a cada interatividade na tela.
 if "contador_doacoes" not in st.session_state:
+
     # Se a chave 'contador_doacoes' ainda não existir na memória da sessão atual do usuário, nós a criamos e a inicializamos com o valor 0.
     st.session_state.contador_doacoes = 0
 
@@ -71,129 +72,6 @@ st.metric(
 =================================================================================================
 PARTE - 2 AC-4 PARTE 1
 =================================================================================================
-Em breve
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 O que faremos na Fase 2:
 Nas aulas anteriores, construímos os módulos isolados em segundo plano (Back-End / Inteligência):
