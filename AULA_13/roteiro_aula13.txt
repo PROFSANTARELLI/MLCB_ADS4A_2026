@@ -15,5 +15,5 @@ ATENÇÃO - CALENDÁRIO DA RETA FINAL - NOVEMBRO:
 ========================================================================================================
 ROTEIRO AULA 13 - AC-4 PARTE 2
 
-Baixe o guia no repositório do professor
-Siga todas as etapas solicitadas
+Baixe o guia no diretório desta aula
+Siga todas as isntruções das etapas descritas no documento
