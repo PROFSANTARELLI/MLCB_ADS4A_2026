@@ -61,11 +61,17 @@ Consolidar todas as camadas do **MESAFARTAI**, aplicando **melhorias finais**, e
 Antes de finalizar o repositório, o grupo deve rodar `streamlit run src/app.py` no terminal do VS Code e validar **todos os cenários abaixo** em sequência:
 
 | Passo | Ação no Sistema | Resultado Esperado |
+
 | **1** | Abrir a aplicação no navegador | Logotipo da pasta `assets/` visível na barra lateral e abas funcionando sem erros. |
+
 | **2** | Enviar no chat: `"Quero doar 15,5 kg de tomate que vencem hoje"` | NLU reconhece intenção; Regex extrai `15.5 kg` e `Tomate`; Urgência marcada como **ALTA**; KNN aponta a ONG mais próxima; barra de confiança exibida. |
+
 | **3** | Enviar no chat: `"Tenho 40 quilos de arroz para doar amanhã"` | Registro gravado no SQLite com Urgência **MÉDIA**. |
+
 | **4** | Enviar no chat: `"Qual a previsão do tempo hoje?"` | Trava de *Threshold* aciona o *fallback* sem gravar lixo no banco de dados. |
+
 | **5** | Acessar a aba **Dashboard de Impacto Social** | KPIs atualizados automaticamente somando `55.5 kg` arrecadados, tabela exibindo as 2 doações reais e mapa plotando as ONGs. |
+
 
 ---
 
