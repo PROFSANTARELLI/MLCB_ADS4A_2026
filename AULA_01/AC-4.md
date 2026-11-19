@@ -1,4 +1,4 @@
-# Etapas:
+# AC4 - Etapa final:
 1 - Serão 3 questões técnicas com valor de 1 ponto cada
 
 2 - A prova é sem consulta e não será permitido uso de IA
