@@ -1,1 +1,17 @@
+AULA 14 - MLCB
 
+CALENDÁRIO RETA FINAL:
+
+19/11 - AC-4 parte final (valor 0,25 ponto)
+
+26/11 - Prova Semestral (valor 3,0 pontos)
+
+03/12 - Vista de Prova
+
+10/12 - Prova Exame
+
+========================================================================================================
+ROTEIRO AULA 14 - AC-4 PARTE FINAL
+
+1 - Orientações e guia de estudo para a prova
+2 - AC-4 parte final: siga todas as instruções das etapas descritas no documento GUIA_AC-4_FINAL.md
