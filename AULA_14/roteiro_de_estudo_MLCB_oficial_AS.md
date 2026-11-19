@@ -18,8 +18,7 @@ Modelos matemáticos não processam texto puro diretamente. Para classificar uma
 
 ### 1.1. Vetorização de Texto: Bag of Words vs. TF-IDF
 * **Bag of Words (BoW):** Constrói um vocabulário com todas as palavras únicas do conjunto de treino e conta quantas vezes cada termo aparece em cada frase. Sua limitação é dar o mesmo peso a palavras muito comuns (ex.: *"para"*, *"com"*, *"hoje"*) e palavras altamente específicas.
-* **TF-IDF (*Term Frequency - Inverse Document Frequency*):** Corrige a limitação do BoW multiplicando a frequência do termo na frase (**TF**) pelo inverso da sua frequência em todo o conjunto de documentos (**IDF**):
-  $$\text{TF-IDF}(t, d) = \text{TF}(t, d) \times \log\left(\frac{N}{\text{DF}(t)}\right)$$
+* **TF-IDF (*Term Frequency - Inverse Document Frequency*):** Corrige a limitação do BoW multiplicando a frequência do termo na frase (**TF**) pelo inverso da sua frequência em todo o conjunto de documentos (**IDF**).
   * **Efeito prático:** Termos que aparecem em quase todas as frases do dataset têm seu peso penalizado (próximo de zero), enquanto palavras raras e discriminativas recebem pesos elevados.
 
 ### 1.2. A Regra de Ouro: `.fit_transform()` vs. `.transform()`
