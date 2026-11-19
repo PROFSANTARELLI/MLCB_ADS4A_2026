@@ -4,12 +4,12 @@
 
 2 - Refaçam atividades e tentem aprender de verdade
 
-3 - Use a IA como fonte de estudo apenas. Peça para ela te ajudar a estudar.
+3 - Use a IA como fonte de estudo apenas. 
 
 # Sobre a prova:
 1 - Serão 3 questões técnicas com valor de 1 ponto cada
 
-2 - A prova é sem consulta e não será permitido uso de IA
+2 - A prova é sem consulta e obrigatoriamente no computador do laboratório
 
 
 ## 1. Processamento de Linguagem Natural (NLP) e Classificação de Intenções
