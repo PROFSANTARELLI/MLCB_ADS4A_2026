@@ -78,9 +78,13 @@ Antes de finalizar o repositório, o grupo deve rodar `streamlit run src/app.py`
 Com os testes validados, execute no terminal do VS Code:
 
 git status
+
 git add .
+
 git commit -m "feat(final): conclusão projeto MESAFARTAI"
+
 git push origin main
+
 
 ---
 
