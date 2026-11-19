@@ -21,14 +21,14 @@ Modelos matemáticos não processam texto puro diretamente. Para classificar uma
 * **TF-IDF (*Term Frequency - Inverse Document Frequency*):** Corrige a limitação do BoW multiplicando a frequência do termo na frase (**TF**) pelo inverso da sua frequência em todo o conjunto de documentos (**IDF**).
   * **Efeito prático:** Termos que aparecem em quase todas as frases do dataset têm seu peso penalizado (próximo de zero), enquanto palavras raras e discriminativas recebem pesos elevados.
 
-### 1.2. A Regra de Ouro: `.fit_transform()` vs. `.transform()`
+### 1.2. A Regra: `.fit_transform()` vs. `.transform()`
 * **No Treinamento (`.fit_transform(X_treino)`):** O vetorizador aprende o vocabulário do dataset (define quais colunas existem na matriz) **e** converte os textos em números.
 * **Na Inferência/Produção (`.transform([texto_novo])`):** O vetorizador **apenas converte** a nova frase usando as colunas já fixadas no treino.
   > **Atenção:** Se `.fit_transform()` for chamado durante a inferência em uma única frase nova, o vetorizador recriará o vocabulário apenas com as palavras daquela frase. Isso altera o número de colunas da matriz de entrada e provoca erro fatal de dimensionalidade (`ValueError`) ao passar os dados para o modelo treinado.
 
 ### 1.3. Trava de Segurança (*Threshold*) vs. `.predict()`
-* Usar `modelo.predict(X)` força o classificador a sempre escolher a classe com a maior probabilidade, mesmo que essa probabilidade seja baixíssima (ex.: `[0.25, 0.28, 0.24, 0.23]` em um problema de 4 classes).
-* **Solução Arquitetural:** Utilizar `modelo.predict_proba(X)[0]`, extrair a maior probabilidade com `np.max()` (ou `np.argmax()`) e compará-la a um **limiar de confiança (*threshold*)** (ex.: `0.65`). Caso a confiança seja menor que o limiar, o sistema aciona uma resposta de contingência (*fallback*), evitando falsos positivos.
+* Usar `modelo.predict(X)` força o classificador a sempre escolher a classe com a maior probabilidade, mesmo que essa probabilidade seja baixíssima.
+* **Solução Arquitetural:** Utilizar `modelo.predict_proba(X)[0]`, extrair a maior probabilidade com `np.max()` (ou `np.argmax()`) e compará-la a um **limiar de confiança (*threshold*)**. Caso a confiança seja menor que o limiar, o sistema aciona uma resposta de contingência (*fallback*), evitando falsos positivos.
 
 ### 1.4. Desbalanceamento de Classes e Métricas de Avaliação
 * Quando um dataset possui 95% de exemplos na Classe A e apenas 2% na Classe C, a **Acurácia Global** torna-se enganosa (um modelo que chuta sempre "A" atinge 95% de acurácia sem aprender nada sobre "C").
@@ -39,7 +39,7 @@ Modelos matemáticos não processam texto puro diretamente. Para classificar uma
 
 ---
 
-## 2. Extração Determinística de Entidades com Expressões Regulares (Regex)
+## 2. REGEX - Extração Determinística de Entidades com Expressões Regulares
 
 Enquanto modelos de Machine Learning classificam a intenção geral (categorias discretas), eles não extraem substrings variáveis (números, códigos, datas) com precisão determinística. Para isso, utiliza-se o módulo nativo `re` do Python.
 
