@@ -1,7 +1,7 @@
 # ROTEIRO DE ENTREGA FINAL — PROJETO MESAFARTAI - AC-4
 
 ## OBJETIVO:
-Consolidar todas as camadas do **MESAFARTAI**, aplicando **melhorias finais**, executando o **teste integrado ponta a ponta** e realizando o commit final no GitHub.
+Consolidar todas as camadas do **MESAFARTAI**, aplicando **melhorias finais**, executando o **teste integrado ponta a ponta** e realizando o commit no GitHub.
 
 ---
 
