@@ -97,4 +97,4 @@ Para conquistar **+0,25 ponto extra** na média final, o grupo deve publicar uma
 2. **Publicação no LinkedIn:**
    * Poste o vídeo no LinkedIn explicando brevemente a arquitetura utilizada, o propósito social dela e o alinhamento com a **ODS 2 da ONU (Fome Zero)**.
    * Marque o professor na publicação (Flavio Santarelli) e use as haHsstags: **#UniFECAF #TI #ODS2 #UmMundoSemFome**
-   * Mande email para o professor com o link do linkedin.
+   * Mande email para o professor com o link do linkedin, com o nome dos integrantes **PRESENTES** para receber o bônus de 0,25 ponto
