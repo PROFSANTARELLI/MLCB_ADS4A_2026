@@ -81,7 +81,7 @@ git status
 
 git add .
 
-git commit -m "feat(final): conclusão projeto MESAFARTAI"
+git commit -m "Conclusão projeto MESAFARTAI"
 
 git push origin main
 
