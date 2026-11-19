@@ -1,7 +1,5 @@
 # ROTEIRO DE ENCERRAMENTO E ENTREGA FINAL — PROJETO MESAFARTAI
 
----
-
 ## OBJETIVO:
 Consolidar todas as camadas do **MESAFARTAI**, aplicando **melhorias finais**, executando o **teste integrado ponta a ponta** e realizando o commit final no GitHub.
 
